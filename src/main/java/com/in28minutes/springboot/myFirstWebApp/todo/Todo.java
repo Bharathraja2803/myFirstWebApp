@@ -2,12 +2,17 @@ package com.in28minutes.springboot.myFirstWebApp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Size;
+
 public class Todo {
 	private int id;
 	private String userName;
+	
+	@Size(min=10, message="Enter atleast 10 chartacters")
 	private String description;
+	
 	private LocalDate targetDate;
-	private boolean done;
+	private boolean isDone;
 	
 	public Todo(int id, String userName, String description, LocalDate targetDate, boolean isDone) {
 		super();
@@ -15,7 +20,7 @@ public class Todo {
 		this.userName = userName;
 		this.description = description;
 		this.targetDate = targetDate;
-		this.done = isDone;
+		this.isDone = isDone;
 	}
 
 	public int getId() {
@@ -50,18 +55,18 @@ public class Todo {
 		this.targetDate = targetDate;
 	}
 
-	public boolean isDone() {
-		return done;
+	public boolean getIsDone() {
+		return isDone;
 	}
-
-	public void setDone(boolean isDone) {
-		this.done = isDone;
+	
+	public void setIsDone(boolean isDone) {
+		this.isDone =  isDone;
 	}
 
 	@Override
 	public String toString() {
 		return "Todo [id=" + id + ", userName=" + userName + ", description=" + description + ", targetDate="
-				+ targetDate + ", isDone=" + done + "]";
+				+ targetDate + ", isDone=" + isDone + "]";
 	}
 	
 	
