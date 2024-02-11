@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javax.print.DocFlavor.INPUT_STREAM;
+
 import org.springframework.stereotype.Service;
 
 import jakarta.validation.Valid;
@@ -21,7 +23,8 @@ public class TodoService {
 	}
 	
 	public List<Todo> findByUser(String username){
-		return todos;
+		Predicate <? super Todo> predicate = todo -> todo.getUserName().equalsIgnoreCase(username);
+		return todos.stream().filter(predicate).toList();
 	}
 	
 	public void addTodo(String userName, String description, LocalDate targetDate, boolean done) {
